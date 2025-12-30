@@ -1,144 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title> Data Send to WhatsApp</title>
-<link rel="icon" type="image/png" href="Pro.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body{
-        min-height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background: linear-gradient(135deg,#25D366,#128C7E);
-    }
-
-    .form-box{
-        background:#fff;
-        width:100%;
-        max-width:400px;
-        padding:25px;
-        border-radius:12px;
-        box-shadow:0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .form-box h2{
-        text-align:center;
-        margin-bottom:20px;
-        color:#128C7E;
-    }
-
-    .form-group{
-        margin-bottom:15px;
-    }
-
-    .form-group label{
-        display:block;
-        margin-bottom:5px;
-        font-size:14px;
-        color:#333;
-    }
-
-    .form-group input,
-    .form-group textarea{
-        width:100%;
-        padding:10px;
-        border:1px solid #ccc;
-        border-radius:6px;
-        font-size:14px;
-        outline:none;
-    }
-
-    .form-group textarea{
-        resize:none;
-        height:90px;
-    }
-
-    button{
-        width:100%;
-        padding:12px;
-        border:none;
-        background:#25D366;
-        color:#fff;
-        font-size:16px;
-        border-radius:8px;
-        cursor:pointer;
-        transition:0.3s;
-    }
-
-    button:hover{
-        background:#1ebe5d;
-    }
-
-    .note{
-        margin-top:10px;
-        font-size:12px;
-        text-align:center;
-        color:#666;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp data </title>
+    <link rel="icon" type="image/png" href="Pro.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1f2e, #0f1524);
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            perspective: 1000px;
+        }
+        
+        .form-card {
+            background: linear-gradient(145deg, #232a3d, #1c2232);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .form-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-title {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transform: translateZ(20px);
+        }
+        
+        .form-subtitle {
+            color: #8a9bb2;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            transform: translateZ(15px);
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        .input-label {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transform: translateZ(15px);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            box-shadow: 
+                inset 0 4px 10px rgba(0, 0, 0, 0.2),
+                0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            transform: translateZ(10px);
+            backdrop-filter: blur(5px);
+        }
+        
+        .input-field:focus {
+            outline: none;
+            box-shadow: 
+                inset 0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(37, 211, 102, 0.4);
+            transform: translateZ(15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .input-field::placeholder {
+            color: #6a7b94;
+        }
+        
+        .textarea-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+            box-shadow: 
+                0 8px 20px rgba(37, 211, 102, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateZ(25px) scale(1.05);
+            box-shadow: 
+                0 12px 25px rgba(37, 211, 102, 0.4),
+                0 6px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #2ef579, #22c15e);
+        }
+        
+        .whatsapp-btn:active {
+            transform: translateZ(15px) scale(0.98);
+            box-shadow: 
+                0 4px 10px rgba(37, 211, 102, 0.3),
+                0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-icon {
+            margin-right: 12px;
+            font-size: 22px;
+            transform: translateZ(25px);
+        }
+        
+        .note {
+            color: #8a9bb2;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 1.5;
+            transform: translateZ(10px);
+        }
+        
+        .note strong {
+            color: #25D366;
+        }
+        
+        .form-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            margin: 30px 0;
+            transform: translateZ(10px);
+        }
+        
+        .phone-number {
+            text-align: center;
+            color: #25D366;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 15px 0;
+            transform: translateZ(15px);
+            text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+        }
+        
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #25D366, #1da851);
+            border-radius: 20px 20px 0 0;
+            transform: translateZ(-1px);
+        }
+        
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 30px 25px;
+            }
+            
+            .form-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="form-box">
-    <h2>Data send to WhatsApp</h2>
-
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
+    <div class="container">
+        <div class="form-card">
+            <h1 class="form-title">Send Message to WhatsApp</h1>
+            <p class="form-subtitle">Fill out the form below and your message will open directly in WhatsApp</p>
+            
+            <form id="whatsappForm">
+                <div class="input-group">
+                    <label class="input-label" for="name">Name</label>
+                    <input type="text" id="name" class="input-field" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="email">Email</label>
+                    <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="message">Message</label>
+                    <textarea id="message" class="input-field textarea-field" placeholder="Enter your message" required></textarea>
+                </div>
+                
+                <div class="form-divider"></div>
+                
+                <p class="phone-number">+91 6356952788</p>
+                
+                <button type="submit" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i>
+                    Send to WhatsApp
+                </button>
+            </form>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-    </div>
-
-    <div class="form-group">
-        <label>Message</label>
-        <textarea id="message" placeholder="Enter your message" required></textarea>
-    </div>
-
-    <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
-
-    <div class="note">
-        Your message will open directly in WhatsApp
-    </div>
-</div>
-
-<script>
-function sendToWhatsApp(){
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var message = document.getElementById("message").value;
-
-    if(name === "" || email === "" || message === ""){
-        alert("Please fill all fields");
-        return;
-    }
-
-    // 👉 Yaha apna WhatsApp number dale (country code ke sath)
-    var phoneNumber = "916356952788"; // Example: 916356952788
-
-    var whatsappMessage =
-        "👤 Name: " + name + "%0A" +
-        "📧 Email: " + email + "%0A" +
-        "💬 Message: " + message;
-
-    var url = "https://wa.me/" + phoneNumber + "?text=" + whatsappMessage;
-
-    window.open(url, "_blank");
-}
-</script>
-
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // WhatsApp phone number (you can change this)
+            const phoneNumber = "916356952788";
+            
+            // Format the message for WhatsApp
+            const whatsappMessage = `Hello! I'm ${name} (${email}). My message: ${message}`;
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Add a 3D button click effect
+            const button = document.querySelector('.whatsapp-btn');
+            button.style.transform = 'translateZ(15px) scale(0.95)';
+            
+            setTimeout(() => {
+                button.style.transform = 'translateZ(25px) scale(1.05)';
+                
+                // Open WhatsApp after a short delay for the animation
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                }, 200);
+            }, 150);
+        });
+        
+        // Add some interactive 3D effects on mouse move
+        const card = document.querySelector('.form-card');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-10px)`;
+        });
+        
+        // Reset card position when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px)';
+        });
+    </script>
 </body>
 </html>
